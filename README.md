@@ -5,3 +5,7 @@
 ```shell
 nest g application
 ```
+
+```shell
+nest g mo restaurants
+```
