@@ -3,5 +3,5 @@
   "editor.tabSize": 4,
   "editor.formatOnPaste": true,
   "editor.formatOnSave": true,
-  "cSpell.words": ["dtos", "nestjs"]
+  "cSpell.words": ["dtos", "graymoon", "nestjs", "nuber", "typeorm"]
 }
