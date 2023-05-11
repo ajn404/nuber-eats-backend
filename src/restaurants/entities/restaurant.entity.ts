@@ -2,13 +2,7 @@
  * 餐厅类
  */
 import { Field, ObjectType } from '@nestjs/graphql';
-import {
-  IsBoolean,
-  IsEmpty,
-  IsOptional,
-  IsString,
-  Length,
-} from 'class-validator';
+import { IsBoolean, IsOptional, IsString, Length } from 'class-validator';
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @ObjectType()
