@@ -4,8 +4,8 @@ import { RestaurantsModule } from './restaurants/restaurants.module';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
-import * as joi from 'joi';
 import { Restaurant } from './restaurants/entities/restaurant.entity';
+import * as joi from 'joi';
 
 @Module({
   imports: [
