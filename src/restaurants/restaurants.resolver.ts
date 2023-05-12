@@ -15,14 +15,14 @@ export class RestaurantsResolver {
 
   @Mutation((returns) => Boolean)
   async createRestaurant(
-    @Args('input') createRestaurantInput: CreateRestaurantDto,
+    @Args('input') createRestaurantInputDto: CreateRestaurantDto,
   ): Promise<boolean> {
     try {
-      await this.restaurantService.createRestaurant(createRestaurantInput);
+      await this.restaurantService.createRestaurant(createRestaurantInputDto);
       return true;
     } catch (e) {
       console.log(e);
-      return e;
+      return false;
     }
 
     // return true;
@@ -30,9 +30,14 @@ export class RestaurantsResolver {
 
   @Mutation((returns) => Boolean)
   async updateRestaurant(
-    @Args('id') id: number,
-    @Args('data') updateRestaurantInput: UpdateRestaurantDto,
-  ) {
+    @Args() updateRestaurantDto: UpdateRestaurantDto,
+  ): Promise<boolean> {
+    try {
+      await this.restaurantService.updateRestaurant(updateRestaurantDto);
+      return true;
+    } catch (e) {
+      return false;
+    }
     return true;
   }
 }
