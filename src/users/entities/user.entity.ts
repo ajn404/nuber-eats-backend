@@ -1,14 +1,26 @@
+import { Field, InputType, ObjectType } from '@nestjs/graphql';
 import { CoreEntities } from 'src/common/entities/core.entities';
 import { Column, Entity } from 'typeorm';
 
+@InputType({ isAbstract: true })
+@ObjectType()
+
 @Entity()
 export class User extends CoreEntities {
-  @Column()
-  email: string;
+    @Column()
+    @Field(type => String)
+    email: string;
 
-  @Column()
-  password: string;
+    @Column()
+    @Field(type => String)
 
-  @Column()
-  role: string;
+    password: string;
+
+    @Column()
+    @Field(type => String)
+
+    role: string;
 }
+
+console.log('user', User);
+
