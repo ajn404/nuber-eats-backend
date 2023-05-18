@@ -25,6 +25,7 @@ export class UsersService {
                 }
             }
             const user = await this.users.create({ email, password, role });
+
             await this.users.save(user)
             return {
                 ok: true,
