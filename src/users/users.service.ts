@@ -7,21 +7,14 @@ import {
     createAccountOutput,
 } from './dtos/create-account.dto';
 import { LoginInput } from './dtos/login.dto';
-import * as jwt from 'jsonwebtoken';
-import { ConfigService } from '@nestjs/config';
-
-
+import { JwtService } from 'src/jwt/jwt.service';
 @Injectable()
 export class UsersService {
     constructor(
         @InjectRepository(User) private readonly users: Repository<User>,
-        private readonly config: ConfigService,
+        private readonly jwtService: JwtService
     ) {
-        console.log("secret key is", config.get('PRIVATE_KEY'));
-
-
     }
-
     async createAccount({
         email,
         password,
@@ -51,14 +44,10 @@ export class UsersService {
             };
         }
     }
-
     async login({
         email,
         password,
     }: LoginInput): Promise<{ ok: boolean; error?: string; token?: string }> {
-        //find the user with the email
-        //check password
-        //return token (jwt)
         try {
             const user = await this.users.findOne({
                 where: { email },
@@ -69,24 +58,19 @@ export class UsersService {
                     error: '用户不存在'
                 }
             }
-
             const passwordCorrect = await user.checkPassword(password);
-
             if (!passwordCorrect) {
                 return {
                     ok: false,
                     error: '密码错误'
                 }
             }
-
-            const token = jwt.sign({ id: user.id }, this.config.get('PRIVATE_KEY'));
-
+            // const token = jwt.sign({ id: user.id }, this.config.get('PRIVATE_KEY'));
+            const token = this.jwtService.sign(user.id);
             return {
                 ok: true,
                 token: token
             }
-
-
         }
         catch (error) {
             return {
