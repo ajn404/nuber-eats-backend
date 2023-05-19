@@ -5,7 +5,7 @@ import {
     registerEnumType,
 } from '@nestjs/graphql';
 import { CoreEntities } from 'src/common/entities/core.entities';
-import { BeforeInsert, Column, Entity, In } from 'typeorm';
+import { BeforeInsert, Column, Entity } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 import { InternalServerErrorException } from '@nestjs/common';
 import { IsEmail, IsEnum } from 'class-validator';
@@ -49,9 +49,6 @@ export class User extends CoreEntities {
         try {
             const res = await bcrypt.compare(aPassword, this.password)
             return res;
-
-
-
         }
         catch (e) {
             console.log(e)
