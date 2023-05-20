@@ -17,4 +17,5 @@ nest g mo restaurants
 ALTER USER "n-graymoon" WITH PASSWORD '88888888'
            ------------
                 自己的用户名
+
 ```
