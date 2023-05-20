@@ -45,4 +45,11 @@ export class UsersResolver {
 
     }
 
+    //after build jwt module ,we can auth the user use jwt that users query with it in header like 'x-jwt'
+    @Query((returns) => User)
+    me() {
+        return null;
+    }
 }
+
+
