@@ -5,8 +5,9 @@ import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
 
 @Module({
-    //现在并不需要在这里导入ConfigService
-    imports: [TypeOrmModule.forFeature([User])],
-    providers: [UsersResolver, UsersService],
+  //现在并不需要在这里导入ConfigService
+  imports: [TypeOrmModule.forFeature([User])],
+  providers: [UsersResolver, UsersService],
+  exports: [UsersService],
 })
-export class UsersModule { }
+export class UsersModule {}
