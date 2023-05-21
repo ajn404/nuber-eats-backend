@@ -1,4 +1,4 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Context, Mutation, Query, Resolver } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entities/user.entity';
 import {
@@ -44,7 +44,8 @@ export class UsersResolver {
 
   //after build jwt module ,we can auth the user use jwt that users query with it in header like 'x-jwt'
   @Query((returns) => User)
-  me() {
-    return null;
+  me(@Context() context: any) {
+    const user = context.req.user;
+    return user;
   }
 }
