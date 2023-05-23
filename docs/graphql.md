@@ -55,3 +55,24 @@ export class AppModule implements NestModule {
 在上面的示例中，我们使用了 express-voyager 包提供的 voyagerMiddleware 函数来创建一个中间件。我们将这个中间件应用于 /voyager 路径，并指定了 GraphQL endpoint 的 URL（在本例中为 /graphql）。
 
 现在，当您访问 /voyager 路径时，您应该能够看到 graphql-voyager 的界面，并且可以使用它来可视化您的 GraphQL schema。
+
+### 然而根本没有express-voyager这个库，md人工智能又开始糊弄人了
+
+```ts
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './app.module';
+import { ValidationPipe } from '@nestjs/common';
+import { express as voyagerMiddleware } from 'graphql-voyager/middleware';
+
+async function bootstrap() {
+    const app = await NestFactory.create(AppModule);
+    app.useGlobalPipes(new ValidationPipe());
+    app.use('/voyager', voyagerMiddleware({ endpointUrl: '/graphql' }));
+    //   app.use(new JwtMiddleware().use);
+    await app.listen(3000);
+}
+bootstrap();
+
+```
+
+
