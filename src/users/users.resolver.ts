@@ -6,6 +6,8 @@ import {
     createAccountOutput,
 } from './dtos/create-account.dto';
 import { LoginInput, LoginOutput } from './dtos/login.dto';
+import { UseGuards } from '@nestjs/common';
+import { AuthGuard } from 'src/auth/auth.guard';
 
 @Resolver((of) => User)
 export class UsersResolver {
@@ -44,8 +46,9 @@ export class UsersResolver {
 
     //after build jwt module ,we can auth the user use jwt that users query with it in header like 'x-jwt'
     @Query((returns) => User)
-    me(@Context() context: any) {
-        const user = context.req.user;
-        return user;
+    @UseGuards(AuthGuard)
+    me() {
+        // const user = context.req.user;
+        // return user;
     }
 }
